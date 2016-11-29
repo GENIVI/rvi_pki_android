@@ -1,4 +1,4 @@
-package org.genivi.pki;
+package org.genivi.rvitest;
 
 import org.junit.Test;
 
