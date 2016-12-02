@@ -1,4 +1,4 @@
-package com.jaguarlandrover.pki;
+package org.genivi.pki;
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
  * Copyright (c) 2016 Jaguar Land Rover.
@@ -8,7 +8,7 @@ package com.jaguarlandrover.pki;
  * Mozilla Public License is at https://www.mozilla.org/MPL/2.0/
  *
  * File:    ProvisioningServerResponse.java
- * Project: UnlockDemo
+ * Project: PKI
  *
  * Created by Lilli Szafranski on 10/13/16.
  *
@@ -16,8 +16,11 @@ package com.jaguarlandrover.pki;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PKIServerResponse {
-    private final static String TAG = "UnlockDemo/ProvSrvrResp";
+/**
+ * Base class for all provisioning server response objects.
+ */
+public class ProvisioningServerResponse {
+    private final static String TAG = "PKI/ProvServerResponse_";
 
     @SerializedName("status")
     private String mStatus = "unknown";
@@ -29,9 +32,16 @@ public class PKIServerResponse {
         CERTIFICATE_RESPONSE
     }
 
-    public PKIServerResponse() {
+    /**
+     * Constructor.
+     */
+    public ProvisioningServerResponse() {
     }
 
+    /**
+     * Gets the status of the response.
+     * @return The status.
+     */
     public Status getStatus() {
         switch (mStatus) {
             case "error":

@@ -1,4 +1,4 @@
-package com.jaguarlandrover.pki;
+package org.genivi.pki;
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
  * Copyright (c) 2016 Jaguar Land Rover.
@@ -7,8 +7,8 @@ package com.jaguarlandrover.pki;
  * Mozilla Public License, version 2.0. The full text of the
  * Mozilla Public License is at https://www.mozilla.org/MPL/2.0/
  *
- * File:    CertificateResponse.java
- * Project: UnlockDemo
+ * File:    PSCertificateResponse.java
+ * Project: PKI
  *
  * Created by Lilli Szafranski on 10/13/16.
  *
@@ -19,7 +19,10 @@ import com.google.gson.annotations.SerializedName;
 import java.security.KeyStore;
 import java.util.ArrayList;
 
-public class PKICertificateResponse extends PKIServerResponse
+/**
+ * Object that represents the body of a certificate response from the provisioning server.
+ */
+public class PSCertificateResponse extends ProvisioningServerResponse
 {
     @SerializedName("signed_certificate")
     private String mDeviceCertificate;
@@ -28,13 +31,16 @@ public class PKICertificateResponse extends PKIServerResponse
     private String mServerCertificate;
 
     @SerializedName("jwt")
-    private ArrayList<String> mJwtCredentials;
+    private ArrayList<String> mJwtPrivileges;
 
     private transient KeyStore mServerKeyStore;
 
     private transient KeyStore mDeviceKeyStore;
 
-    public PKICertificateResponse() {
+    /**
+     * Constructor.
+     */
+    public PSCertificateResponse() {
     }
 
     String getDeviceCertificate() {
@@ -45,10 +51,18 @@ public class PKICertificateResponse extends PKIServerResponse
         return mServerCertificate;
     }
 
-    public ArrayList<String> getJwtCredentials() {
-        return mJwtCredentials;
+    /**
+     * Gets a list of any server-signed JWT privileges sent to the device from the provisioning server.
+     * @return A list of any server-signed JWT privileges sent to the device from the provisioning server.
+     */
+    public ArrayList<String> getJwtPrivileges() {
+        return mJwtPrivileges;
     }
 
+    /**
+     * Gets the keystore containing the server's server-self-signed certificate.
+     * @return A keystore containing the server's server-self-signed certificate.
+     */
     public KeyStore getServerKeyStore() {
         return mServerKeyStore;
     }
@@ -57,6 +71,10 @@ public class PKICertificateResponse extends PKIServerResponse
         mServerKeyStore = serverKeyStore;
     }
 
+    /**
+     * Gets the keystore containing the device's public/private key-pair and server-signed certificate.
+     * @return A keystore containing the device's public/private key-pair and server-signed certificate.
+     */
     public KeyStore getDeviceKeyStore() {
         return mDeviceKeyStore;
     }

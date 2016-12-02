@@ -1,4 +1,12 @@
-package com.jaguarlandrover.pki;
+package org.genivi.pki;
+/**
+ * Copyright (C) 2015, Jaguar Land Rover
+ *
+ * This program is licensed under the terms and conditions of the
+ * Mozilla Public License, version 2.0.  The full text of the
+ * Mozilla Public License is at https://www.mozilla.org/MPL/2.0/
+ *
+ */
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +29,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.jaguarlandrover.pki.test", appContext.getPackageName());
+        assertEquals("org.genivi.pki.test", appContext.getPackageName());
     }
 }

@@ -1,4 +1,4 @@
-package com.jaguarlandrover.pki;
+package org.genivi.pki;
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
  * Copyright (c) 2016 Jaguar Land Rover.
@@ -8,7 +8,7 @@ package com.jaguarlandrover.pki;
  * Mozilla Public License is at https://www.mozilla.org/MPL/2.0/
  *
  * File:    ProvisioningServerRequest.java
- * Project: UnlockDemo
+ * Project: PKI
  *
  * Created by Lilli Szafranski on 10/13/16.
  *
@@ -16,8 +16,11 @@ package com.jaguarlandrover.pki;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PKIServerRequest {
-    private final static String TAG = "UnlockDemo/ProvSrvrReq_";
+/**
+ * Base class for all provisioning server request objects.
+ */
+public class ProvisioningServerRequest {
+    private final static String TAG = "PKI/ProvServerRequest__";
 
     @SerializedName("type")
     private String mType = "undefined";
@@ -29,10 +32,17 @@ public class PKIServerRequest {
 
     }
 
-    public PKIServerRequest() {
+    /**
+     * Constructor.
+     */
+    public ProvisioningServerRequest() {
     }
 
-    public PKIServerRequest.Type getType() {
+    /**
+     * What kind of request object is this.
+     * @return The type.
+     */
+    public ProvisioningServerRequest.Type getType() {
         switch (mType) {
             case "token_verification":
                 return Type.TOKEN_VERIFICATION;
@@ -43,7 +53,7 @@ public class PKIServerRequest {
         return Type.UNDEFINED;
     }
 
-    protected void setType(PKIServerRequest.Type type) {
+    protected void setType(ProvisioningServerRequest.Type type) {
         switch (type) {
             case UNDEFINED:
                 mType = "undefined";

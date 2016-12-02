@@ -1,4 +1,4 @@
-package com.jaguarlandrover.pki;
+package org.genivi.pki;
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
  * Copyright (c) 2016 Jaguar Land Rover.
@@ -7,8 +7,8 @@ package com.jaguarlandrover.pki;
  * Mozilla Public License, version 2.0. The full text of the
  * Mozilla Public License is at https://www.mozilla.org/MPL/2.0/
  *
- * File:    TokenVerification.java
- * Project: UnlockDemo
+ * File:    PSTokenVerificationRequest.java
+ * Project: PKI
  *
  * Created by Lilli Szafranski on 10/13/16.
  *
@@ -16,7 +16,11 @@ package com.jaguarlandrover.pki;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PKITokenVerificationRequest extends PKIServerRequest {
+/**
+ * Object that represents the body of a token verification request sent to the provisioning server.
+ */
+public class PSTokenVerificationRequest extends ProvisioningServerRequest
+{
     private transient String mToken = "";
 
     private transient String mCertificateId = "";
@@ -24,11 +28,19 @@ public class PKITokenVerificationRequest extends PKIServerRequest {
     @SerializedName("jwt")
     private String jwt = null;
 
-    public PKITokenVerificationRequest() {
+    /**
+     * Constructor.
+     */
+    public PSTokenVerificationRequest() {
         setType(Type.TOKEN_VERIFICATION);
     }
 
-    public PKITokenVerificationRequest(String token, String certificateId) {
+    /**
+     * Constructor.
+     * @param token The one-time token sent to the device through email, text, etc.
+     * @param certificateId A certificate id sent with the one-time token.
+     */
+    public PSTokenVerificationRequest(String token, String certificateId) {
         setType(Type.TOKEN_VERIFICATION);
 
         mToken = token;
@@ -47,10 +59,18 @@ public class PKITokenVerificationRequest extends PKIServerRequest {
         return "{ \"token\": \"" + getToken() + "\", \"certificate_id\": \"" + getCertificateId() + "\"}";
     }
 
+    /**
+     * Gets the one-time token sent to the device through email, text, etc.
+     * @return The one-time token sent to the device through email, text, etc.
+     */
     public String getToken() {
         return mToken;
     }
 
+    /**
+     * Gets the certificate id sent with the one-time token.
+     * @return The certificate id sent with the one-time token.
+     */
     public String getCertificateId() {
         return mCertificateId;
     }

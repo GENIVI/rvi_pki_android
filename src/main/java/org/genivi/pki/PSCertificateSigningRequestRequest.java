@@ -1,4 +1,4 @@
-package com.jaguarlandrover.pki;
+package org.genivi.pki;
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
  * Copyright (c) 2016 Jaguar Land Rover.
@@ -7,8 +7,8 @@ package com.jaguarlandrover.pki;
  * Mozilla Public License, version 2.0. The full text of the
  * Mozilla Public License is at https://www.mozilla.org/MPL/2.0/
  *
- * File:    CertificateSigningRequest.java
- * Project: UnlockDemo
+ * File:    PSCertificateSigningRequestRequest.java
+ * Project: PKI
  *
  * Created by Lilli Szafranski on 10/13/16.
  *
@@ -16,20 +16,35 @@ package com.jaguarlandrover.pki;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PKICertificateSigningRequestRequest extends PKIServerRequest {
+/**
+ * Object that represents the body of a certificate signing request request sent to the provisioning server.
+ */
+public class PSCertificateSigningRequestRequest extends ProvisioningServerRequest
+{
     @SerializedName("certificate_signing_request")
     private String mCertificateSigningRequest;
 
-    public PKICertificateSigningRequestRequest() {
+    /**
+     * Constructor.
+     */
+    public PSCertificateSigningRequestRequest() {
         setType(Type.CERTIFICATE_SIGNING_REQUEST);
     }
 
-    public PKICertificateSigningRequestRequest(String certificateSigningRequest) {
+    /**
+     * Constructor.
+     * @param certificateSigningRequest The PEM-encoded certificate signing request.
+     */
+    public PSCertificateSigningRequestRequest(String certificateSigningRequest) {
         setType(Type.CERTIFICATE_SIGNING_REQUEST);
 
         mCertificateSigningRequest = certificateSigningRequest;
     }
 
+    /**
+     * Gets the PEM-encoded certificate signing request.
+     * @return The PEM-encoded certificate signing request.
+     */
     public String getCertificateSigningRequest() {
         return mCertificateSigningRequest;
     }

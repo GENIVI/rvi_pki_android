@@ -1,4 +1,4 @@
-package com.jaguarlandrover.pki;
+package org.genivi.pki;
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
  * Copyright (c) 2016 Jaguar Land Rover.
@@ -7,8 +7,8 @@ package com.jaguarlandrover.pki;
  * Mozilla Public License, version 2.0. The full text of the
  * Mozilla Public License is at https://www.mozilla.org/MPL/2.0/
  *
- * File:    Error.java
- * Project: UnlockDemo
+ * File:    PSErrorResponse.java
+ * Project: PKI
  *
  * Created by Lilli Szafranski on 10/13/16.
  *
@@ -16,20 +16,34 @@ package com.jaguarlandrover.pki;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PKIErrorResponse extends PKIServerResponse
+/**
+ * Object that represents the body of an error response from the provisioning server.
+ */
+public class PSErrorResponse extends ProvisioningServerResponse
 {
     @SerializedName("reason")
     private String mReason = "unknown";
 
-    public PKIErrorResponse() {
+    /**
+     * Constructor.
+     */
+    public PSErrorResponse() {
     }
 
-    PKIErrorResponse(String reason) {
+    /**
+     * Constructor.
+     * @param reason The reason for the error.
+     */
+    PSErrorResponse(String reason) {
         setStatus("error");
 
         mReason = reason;
     }
 
+    /**
+     * Gets the reason for the error.
+     * @return The reason for the error.
+     */
     public String getReason() {
         return mReason;
     }
